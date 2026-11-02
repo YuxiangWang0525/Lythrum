@@ -46,7 +46,7 @@ async function handleLogin() {
       <div style="text-align: center; margin-bottom: 24px">
         <Icon icon="mdi:shield-crown" style="font-size: 48px; color: #1677ff" />
         <Typography.Title :level="3" style="margin-top: 12px; margin-bottom: 0">
-          MCAP 管理员登录
+          Lythrum 管理员登录
         </Typography.Title>
       </div>
       <Form layout="vertical">

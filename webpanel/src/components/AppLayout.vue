@@ -35,7 +35,7 @@ function handleMenuClick(info: any) {
           border-bottom: 1px solid #f0f0f0;
         "
       >
-        <p v-if="authStore.isAdmin">MCAP 管理面板</p>
+        <p v-if="authStore.isAdmin">Lythrum 管理面板</p>
         <p v-else>{{ siteSettings.displayName }}</p>
       </div>
       <Menu

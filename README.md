@@ -1,6 +1,8 @@
-# Minecraft Age Platform (MCAP)
+# Lythrum
 
-> A real-name verification platform for Minecraft servers with minor protection management.
+> **Originally named MinecraftAgePlatform (MCAP)** | 原名 MinecraftAgePlatform
+
+A real-name verification platform for Minecraft servers with minor protection management.
 
 Internal Codename: [Promise Makes a Home](https://endfield.wiki.gg/wiki/A_Promise_Makes_a_Home)
 
@@ -29,6 +31,12 @@ Internal Codename: [Promise Makes a Home](https://endfield.wiki.gg/wiki/A_Promis
 | Frontend | Vue 3 + Ant Design Vue 4 + Pinia + Vue Router (Hash mode) |
 | Build | Vite 8 (frontend) + NestJS CLI (backend) |
 | Lint | oxlint + Prettier |
+
+---
+
+## Recommended Server Plugin
+
+For the best experience, pair Lythrum with [**Minecraft Age Manager**](https://github.com/YuxiangWang0525/MinecraftAgeManager) — a Minecraft server plugin that integrates with Lythrum's API to provide real-name verification and anti-addiction features directly in-game.
 
 ---
 
@@ -248,83 +256,6 @@ docker run -d \
        }
    }
    ```
-
-### 1Panel (Linux)
-
-[1Panel](https://1panel.cn/) is a modern Linux server management panel.
-
-1. **Install 1Panel** (if not already installed):
-   ```bash
-   curl -sSL https://resource.fit2cloud.com/1panel/package/quick_start.sh -o quick_start.sh && sudo bash quick_start.sh
-   ```
-
-2. **Install Node.js environment** via 1Panel's App Store:
-   - Go to **App Store** → search for **Node.js** → install
-   - Or use 1Panel's **Runtime** → **Create Runtime** → select Node.js 22
-
-3. **Deploy MCAP as a Node.js project**:
-   - Go to **Website** → **Node Project** → **Create Node Project**
-   - Project directory: upload the MCAP source to `/opt/minecraftageplatform`
-   - Startup file: `dist/main.js`
-   - Run command: `node --env-file=.env dist/main.js`
-   - Port: `6227`
-
-4. **Alternative: Deploy via Docker Compose** (recommended — uses the `docker-compose.yml` provided at the project root):
-   ```bash
-   cd /opt/minecraftageplatform
-   cp .env.example .env && nano .env
-   docker compose up -d --build
-   ```
-   In 1Panel, go to **Container** → **Compose** → create a new compose project pointing at `/opt/minecraftageplatform/docker-compose.yml`.
-
-5. **Set up reverse proxy** in 1Panel:
-   - Go to **Website** → **Create Website** → **Reverse Proxy**
-   - Domain: `mcap.your-domain.com`
-   - Proxy target: `http://127.0.0.1:6227`
-   - Enable HTTPS with Let's Encrypt
-
-### BT Panel / 宝塔面板 (Linux) / aaPanel
-
-[BT Panel](https://www.bt.cn/) (aaPanel) is a popular Chinese Linux server management panel.
-
-1. **Install BT Panel** (if not already installed):
-   ```bash
-   url=https://download.bt.cn/install/install-ubuntu_6.0.sh && sudo bash $url ed8484bec
-   ```
-
-2. **Install required software** via BT Panel's App Store:
-   - **PM2 Manager** (Node.js version manager)
-   - **Nginx** (reverse proxy)
-
-3. **Deploy via PM2 Manager**:
-   - Go to **App Store** → **PM2 Manager** → **Settings**
-   - Click **Add Project**
-   - Project directory: `/www/wwwroot/minecraftageplatform`
-   - Startup file: `dist/main.js`
-   - Project name: `mcap`
-   - Run command: `node --env-file=.env dist/main.js`
-   - Click **Submit**
-
-4. **Build the project** (via SSH or BT Panel's terminal):
-   ```bash
-   cd /www/wwwroot/minecraftageplatform
-   pnpm install
-   cd webpanel && pnpm install && cd ..
-   cp .env.example .env
-   nano .env
-   chmod +x build.sh
-   ./build.sh
-   # Then restart the PM2 project
-   pm2 restart mcap
-   ```
-
-5. **Set up website with Nginx reverse proxy**:
-   - Go to **Website** → **Add Website**
-   - Domain: `mcap.your-domain.com`
-   - PHP version: **Pure static** (no PHP needed)
-   - After creation, go to **Settings** → **Reverse Proxy** → **Add Reverse Proxy**
-   - Target URL: `http://127.0.0.1:6227`
-   - Enable **SSL** with Let's Encrypt certificate
 
 ---
 

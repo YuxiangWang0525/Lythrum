@@ -3,16 +3,16 @@ import { ref, computed } from 'vue'
 import axios from 'axios'
 
 export const useSiteSettingsStore = defineStore('siteSettings', () => {
-  const siteName = ref('MCAP 实名认证系统')
+  const siteName = ref('Lythrum 实名认证系统')
   const siteDescription = ref('')
   const loaded = ref(false)
 
-  const displayName = computed(() => siteName.value || 'MCAP 实名认证系统')
+  const displayName = computed(() => siteName.value || 'Lythrum 实名认证系统')
 
   async function fetch() {
     try {
       const res: any = await axios.get('/api/site/info')
-      siteName.value = res.siteName || 'MCAP 实名认证系统'
+      siteName.value = res.siteName || 'Lythrum 实名认证系统'
       siteDescription.value = res.siteDescription || ''
       loaded.value = true
     } catch {
