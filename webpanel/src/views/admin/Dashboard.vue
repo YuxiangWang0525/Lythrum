@@ -94,7 +94,7 @@ async function handleSaveSiteSettings() {
         <Form.Item label="站点名称">
           <Input
             v-model:value="siteForm.siteName"
-            placeholder="例如：MCAP 实名认证系统"
+            placeholder="例如：Lythrum 实名认证系统"
           />
         </Form.Item>
         <Form.Item label="站点描述">

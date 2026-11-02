@@ -19,7 +19,7 @@ export class ServerController {
 
   @Get('ping')
   ping() {
-    return { status: 'ok', message: 'MCAP 后端服务运行中' };
+    return { status: 'ok', message: 'Lythrum 后端服务运行中' };
   }
 
   @Get('getUserInfo')

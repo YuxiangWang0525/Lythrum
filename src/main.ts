@@ -30,6 +30,6 @@ async function bootstrap() {
   const appUrl = process.env.APP_URL || `http://localhost:${port}`;
 
   await app.listen(port);
-  console.log(`MCAP Server running on ${appUrl}`);
+  console.log(`Lythrum Server running on ${appUrl}`);
 }
 await bootstrap();

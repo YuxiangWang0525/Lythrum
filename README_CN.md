@@ -1,6 +1,8 @@
-# Minecraft Age Platform（MCAP）
+# Lythrum
 
-> 面向 Minecraft 服务器的实名认证平台与未成年人保护管理系统。
+> **原名 Minecraft Age Platform（MCAP）** | Originally named MinecraftAgePlatform
+
+面向 Minecraft 服务器的实名认证平台与未成年人保护管理系统。
 
 内部代号：[Promise Makes a Home](https://endfield.wiki.gg/wiki/A_Promise_Makes_a_Home)
 
@@ -29,6 +31,12 @@
 | 前端 | Vue 3 + Ant Design Vue 4 + Pinia + Vue Router（Hash 模式） |
 | 构建 | Vite 8（前端）+ NestJS CLI（后端） |
 | 代码规范 | oxlint + Prettier |
+
+---
+
+## 推荐服务端插件
+
+搭配 [**Minecraft Age Manager**](https://github.com/YuxiangWang0525/MinecraftAgeManager) 使用可获得最佳体验——这是一个 Minecraft 服务端插件，可直接对接 Lythrum 的 API，在游戏中实现实名认证与防沉迷功能。
 
 ---
 
@@ -257,90 +265,6 @@ docker run -d \
        }
    }
    ```
-
-### 1Panel（Linux）
-
-[1Panel](https://1panel.cn/) 是现代化的 Linux 服务器运维管理面板。
-
-1. **安装 1Panel**（如果尚未安装）：
-
-   ```bash
-   curl -sSL https://resource.fit2cloud.com/1panel/package/quick_start.sh -o quick_start.sh && sudo bash quick_start.sh
-   ```
-
-2. **安装 Node.js 环境**：
-   - 进入 **应用商店**，搜索并安装 **Node.js**；
-   - 或进入 **运行环境** → **创建运行环境**，选择 Node.js 22。
-
-3. **将 MCAP 部署为 Node.js 项目**：
-   - 将 MCAP 源码上传到 `/opt/minecraftageplatform`；
-   - 进入 **网站** → **Node 项目** → **创建 Node 项目**；
-   - 项目目录选择 `/opt/minecraftageplatform`；
-   - 启动文件填写 `dist/main.js`；
-   - 启动命令设置为 `node --env-file=.env dist/main.js`；
-   - 服务端口设置为 `6227`。
-
-4. **可选：通过 Docker Compose 部署**（推荐——直接使用项目根目录的 `docker-compose.yml`）：
-
-   ```bash
-   cd /opt/minecraftageplatform
-   cp .env.example .env && nano .env
-   docker compose up -d --build
-   ```
-
-   在 1Panel 中进入 **容器** → **编排** → **创建编排**，指向 `/opt/minecraftageplatform/docker-compose.yml`。
-
-5. **配置反向代理**：
-   - 进入 **网站** → **创建网站** → **反向代理**；
-   - 域名填写 `mcap.your-domain.com`；
-   - 代理地址填写 `http://127.0.0.1:6227`；
-   - 使用 Let's Encrypt 申请证书并启用 HTTPS。
-
-### 宝塔面板（Linux）
-
-[宝塔面板](https://www.bt.cn/) 是常用的 Linux 服务器管理面板。
-
-1. **安装宝塔面板**（如果尚未安装）：
-
-   ```bash
-   url=https://download.bt.cn/install/install-ubuntu_6.0.sh && sudo bash $url ed8484bec
-   ```
-
-2. **通过应用商店安装所需软件**：
-   - **PM2 管理器**，用于管理 Node.js 版本和项目；
-   - **Nginx**，用于配置反向代理。
-
-3. **通过 PM2 管理器部署**：
-   - 将项目上传到 `/www/wwwroot/minecraftageplatform`；
-   - 进入 **应用商店** → **PM2 管理器** → **设置**；
-   - 点击 **添加项目**；
-   - 项目目录填写 `/www/wwwroot/minecraftageplatform`；
-   - 启动文件填写 `dist/main.js`；
-   - 项目名称填写 `mcap`；
-   - 启动命令设置为 `node --env-file=.env dist/main.js`；
-   - 点击 **提交**。
-
-4. **通过 SSH 或宝塔终端构建项目**：
-
-   ```bash
-   cd /www/wwwroot/minecraftageplatform
-   pnpm install
-   cd webpanel && pnpm install && cd ..
-   cp .env.example .env
-   nano .env
-   chmod +x build.sh
-   ./build.sh
-   # 构建完成后重启 PM2 项目
-   pm2 restart mcap
-   ```
-
-5. **配置网站和 Nginx 反向代理**：
-   - 进入 **网站** → **添加站点**；
-   - 域名填写 `mcap.your-domain.com`；
-   - PHP 版本选择 **纯静态**，本项目不需要 PHP；
-   - 创建后进入 **设置** → **反向代理** → **添加反向代理**；
-   - 目标 URL 填写 `http://127.0.0.1:6227`；
-   - 使用 Let's Encrypt 申请证书并启用 **SSL**。
 
 ---
 

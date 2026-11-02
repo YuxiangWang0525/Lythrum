@@ -189,7 +189,7 @@ export class AdminService {
     const nameSetting = await this.systemSettingRepository.findOne({ where: { key: 'site_name' } });
     const descSetting = await this.systemSettingRepository.findOne({ where: { key: 'site_description' } });
     return {
-      siteName: nameSetting?.value || 'MCAP 实名认证系统',
+      siteName: nameSetting?.value || 'Lythrum 实名认证系统',
       siteDescription: descSetting?.value || '',
     };
   }
